@@ -68,8 +68,8 @@ export function Register() {
                         />
                     </TransactionsTypes>
 
-                    <CategorySelectButton 
-                        title="Categoria"
+                    <CategorySelectButton
+                        title={category.name}
                         onPress={handleOpenSelectCategoryModal}
                     />
                 </Fields>
