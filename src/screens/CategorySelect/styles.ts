@@ -3,6 +3,7 @@ import { Feather } from '@expo/vector-icons';
 import styled from "styled-components/native";
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import theme from "../../global/styles/theme";
 
 interface CategoryProps {
     isActive: boolean;
@@ -37,7 +38,7 @@ export const Category = styled.TouchableOpacity<CategoryProps>`
     flex-direction: row;
     align-items: center;
     
-    background-color: ${({ isActive, theme }) => 
+    background-color: ${({ isActive }) => 
         isActive ? theme.colors.secondary_light : theme.colors.background
     };
 `;
