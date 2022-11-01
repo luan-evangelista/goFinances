@@ -24,8 +24,7 @@ import {
 } from './styles';
 
 interface FormData {
-  [name: string]: string;
-  amount: string;
+  [name: string]: any;
 }
 
 const schema = Yup.object().shape({
@@ -67,21 +66,22 @@ export function Register() {
     setCategoryModalOpen(false);
   }
 
-  function handleRegister(form: FormData) {
-    if(!transactionType)
-      return Alert.alert('Selecione o tipo da transação');
+  function handleSubmitRegister(form: FormData) { 
+    if(!transactionType) {
+      return Alert.alert('Selecione o tipo de transação');
+    }
 
-    if(category.key === 'category')
+    if(category.key === 'category') {
       return Alert.alert('Selecione a categoria');
+    }
 
-
-    const data = {
+    const dataFormRegister = {
       name: form.name,
       amount: form.amount,
       transactionType,
       category: category.key
     }
-    console.log(data);
+    console.log('Log: dataFormRegister', dataFormRegister)
   }
 
   return (
@@ -132,7 +132,7 @@ export function Register() {
 
           <Button
             title="Enviar"
-            onPress={handleSubmit(handleRegister)}
+            onPress={handleSubmit(handleSubmitRegister)}
           />
         </Form>
 
