@@ -78,7 +78,7 @@ export function Register() {
       return Alert.alert('Selecione a categoria');
     }
 
-    const dataFormRegister = {
+    const newTransaction = {
       name: form.name,
       amount: form.amount,
       transactionType,
@@ -86,7 +86,15 @@ export function Register() {
     }
     
     try {
-      await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormRegister));
+      const data = await AsyncStorage.getItem(dataKey);
+      const currentData = data ? JSON.parse(data) : [];
+
+      const dataFormatted = [
+        ...currentData,
+        newTransaction
+      ];
+
+      await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormatted));
 
     } catch (error) {
       console.log(error);
