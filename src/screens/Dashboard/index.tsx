@@ -34,8 +34,15 @@ export function Dashboard() {
         const response = await AsyncStorage.getItem(dataKey);
         const transactions = response ? JSON.parse(response) : [];
 
+        let entriesTotal = 0;
+        let expensiveTotal = 0;
+
         const transactionsFormatted: DataListProps[] = transactions
         .map((item: DataListProps) => {
+
+            if(item.type === 'positive'){
+                entriesTotal += Number(item.amount);
+            }
 
             const amount = Number(item.amount)
             .toLocaleString('pt-BR', {
