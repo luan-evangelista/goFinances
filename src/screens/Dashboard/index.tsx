@@ -26,8 +26,18 @@ export interface DataListProps extends TransactionCardProps {
     id: string;
 }
 
+interface HighlightProps{
+    amount: string;
+}
+
+interface HighlightData{
+    entries: HighlightProps;
+    expensive: HighlightProps;
+}
+
 export function Dashboard() {
-    const [data, setData] = useState<DataListProps[]>([]);
+    const [transactions, setTransactions] = useState<DataListProps[]>([]);
+    const [HighlightData, setHighlightData] = useState<HighlightProps>();
 
     async function loadTransactions(){
         const dataKey = '@gofinances:transactions';
@@ -42,6 +52,8 @@ export function Dashboard() {
 
             if(item.type === 'positive'){
                 entriesTotal += Number(item.amount);
+            } else {
+                expensiveTotal += Number(item.amount);
             }
 
             const amount = Number(item.amount)
@@ -66,7 +78,7 @@ export function Dashboard() {
             }
         });
 
-        setData(transactionsFormatted);
+        setTransactions(transactionsFormatted);
     };
 
     useEffect(() => {
@@ -120,7 +132,7 @@ export function Dashboard() {
                 <Title>Listagem</Title>
 
                 <TransactionList
-                    data={data}
+                    data={transactions}
                     keyExtractor={item => item.id}
                     renderItem={({ item }) => <TransactionCard data={item} />}
                 />
