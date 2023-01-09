@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { VictoryPie } from 'victory-native';
 
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useTheme } from 'styled-components';
 
 import { HistoryCard } from '../../components/HistoryCard';
@@ -12,7 +13,11 @@ import {
     Header,
     Title,
     Content,
-    ChartContainer
+    ChartContainer,
+    MonthSelect,
+    MonthSelectButton,
+    SelectIcon,
+    Month
 } from './styles';
 
 interface TransactionData {
@@ -95,7 +100,25 @@ export function Resume() {
                 <Title>Resumo por categoria</Title>
             </Header>
 
-            <Content>
+            <Content
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{
+                    paddingHorizontal: 24,
+                    paddingBottom: useBottomTabBarHeight(),
+                }}
+            >
+
+                <MonthSelect>
+                    <MonthSelectButton>
+                        <SelectIcon name="chevron-left" />
+                    </MonthSelectButton>
+
+                    <Month>Maio</Month>
+
+                    <MonthSelectButton>
+                        <SelectIcon name="chevron-right" />
+                    </MonthSelectButton>
+                </MonthSelect>
 
                 <ChartContainer>
                     <VictoryPie
