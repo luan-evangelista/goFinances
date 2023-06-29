@@ -51,7 +51,7 @@ export function AppRoutes() {
                     )
                 }}
             />
-            <Screen
+            {/* <Screen
                 name="Resumo"
                 component={Resume}
                 options={{
@@ -63,7 +63,7 @@ export function AppRoutes() {
                         />
                     )
                 }}
-            />
+            /> */}
         </Navigator>
     );
 }
