@@ -56,7 +56,7 @@ export function Dashboard() {
         .filter(transaction => transaction.type === type)
         .map(transaction => new Date(transaction.date).getTime())))
 
-    return `${lastTransaction.getDate()} de ${lastTransaction.toLocaleString('pt-BR', {month: 'long'})}`;
+    return `${lastTransaction.getDate()} de ${lastTransaction.toLocaleString('pt-BR', { month: 'long' })}`;
   }
 
   async function loadTransactions() {
@@ -98,6 +98,7 @@ export function Dashboard() {
         }
       });
 
+    transactionsFormatted.reverse();
     setTransactions(transactionsFormatted);
 
     const lastTransactionEntries = getLastTransactionDate(transactions, 'positive');
@@ -170,6 +171,12 @@ export function Dashboard() {
 
             <HighlightCards>
               <HighlightCard
+                type="total"
+                title="Total"
+                amount={highlightData.total.amount}
+                lastTransaction={highlightData.total.lastTransaction}
+              />
+              <HighlightCard
                 type="up"
                 title="Entradas"
                 amount={highlightData.entries.amount}
@@ -180,12 +187,6 @@ export function Dashboard() {
                 title="Saídas"
                 amount={highlightData.expensives.amount}
                 lastTransaction={highlightData.expensives.lastTransaction}
-              />
-              <HighlightCard
-                type="total"
-                title="Total"
-                amount={highlightData.total.amount}
-                lastTransaction={highlightData.total.lastTransaction}
               />
             </HighlightCards>
 
