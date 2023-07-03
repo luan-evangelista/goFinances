@@ -165,7 +165,7 @@ export function Dashboard() {
                   </User>
                 </UserInfo>
 
-                <Icon name="power" />
+                <Icon name="unlock" />
               </UserWrapper>
             </Header>
 
